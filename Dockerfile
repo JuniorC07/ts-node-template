@@ -1,12 +1,14 @@
-FROM node
+FROM node:18
  
 WORKDIR /app
  
 COPY package.json package.json
-COPY package-lock.json package-lock.json
+COPY yarn.lock yarn.lock
  
-RUN npm install
+RUN yarn 
  
 COPY . .
+
+RUN yarn build
  
-CMD [ "npm", "run", "start-prod"]
+CMD [ "yarn", "start"]
